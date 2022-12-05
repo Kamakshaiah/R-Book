@@ -5,7 +5,10 @@ markdf$satisfaction <- as.numeric(markdf$satisfaction)
 head(markdf$satisfaction)
 
 # aov(salary ~ satisfaction, data = markdf)
-aov_fit <- aov(salary ~ satisfaction, data = markdf)
+aov_fit <- aov(salary ~ as.factor(satisfaction), data = markdf)
 summary(aov_fit)
 summary.lm(aov_fit)
 
+TukeyHSD(aov_fit)
+
+tapply(markdf$salary, as.factor(markdf$satisfaction), length)
